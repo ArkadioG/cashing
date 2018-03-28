@@ -12,7 +12,16 @@ english_dictionary = load_words()
 tabs = {}
 
 def build_tabs():
+    cases = {'a': 2, 'm': 3, 'x': 1, 'e': 3, 'f': 3}
 
+    for letter, count in cases.items():
+        case_key = f'{letter}{count}'
+        words = []
+        for word in english_dictionary:
+            if word.count(letter) == count:
+                words.append(word)
+
+        tabs[case_key] = words
 
 
 def tabulation_search(letter: str, l_count: int):
@@ -33,12 +42,14 @@ def tabulation_search(letter: str, l_count: int):
             if word.count(letter) == l_count:
                 found_words.append(word)
 
-        tabs[search_key] = found_words
+        # tabs[search_key] = found_words
 
     print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
+    return found_words
 
 
 start = time.time()
+build_tabs()
 search(tabulation_search)
 stop = time.time()
 

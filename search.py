@@ -8,6 +8,10 @@ def search(search_func):
         search_func('x', 1)
         search_func('e', 3)
         search_func('f', 3)
+        search_func('c', 2)
+        search_func('h', 3)
+        search_func('w', 2)
+
 
 
 
