@@ -4,7 +4,7 @@ Presents memoization solution to problem.
 
 from read_dictionary import load_words
 from search import search
-import time
+from time import time
 
 # len() == 370101
 english_dictionary = load_words()
@@ -18,6 +18,7 @@ def memoization_search(letter: str, l_count: int):
     :param letter: Letter to find in word
     :param l_count: Number of occurences of letter in the word
     """
+    global memo
     found_words = []
 
     search_key = f'{letter}{l_count}'
@@ -30,13 +31,18 @@ def memoization_search(letter: str, l_count: int):
             if word.count(letter) == l_count:
                 found_words.append(word)
 
+        # memorize data
         memo[search_key] = found_words
 
-    print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
+    # print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
 
 
-start = time.time()
-search(memoization_search)
-stop = time.time()
+def main():
+    start = time()
+    search(memoization_search)
+    stop = time()
+    print(f'It took {stop - start:.6f} sec.')
 
-print(f'It took {stop - start:.6f} sec.')
+
+if __name__ == '__main__':
+    main()

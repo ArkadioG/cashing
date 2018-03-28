@@ -4,7 +4,7 @@ Presents tabulation solution to problem.
 
 from read_dictionary import load_words
 from search import search
-import time
+from time import time
 
 # len() == 370101
 english_dictionary = load_words()
@@ -12,6 +12,8 @@ english_dictionary = load_words()
 tabs = {}
 
 def build_tabs():
+    global tabs
+
     cases = {'a': 2, 'm': 3, 'x': 1, 'e': 3, 'f': 3}
 
     for letter, count in cases.items():
@@ -44,13 +46,16 @@ def tabulation_search(letter: str, l_count: int):
 
         # tabs[search_key] = found_words
 
-    print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
-    return found_words
+    # print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
+    # return found_words
 
 
-start = time.time()
-build_tabs()
-search(tabulation_search)
-stop = time.time()
+def main():
+    start = time()
+    build_tabs()
+    search(tabulation_search)
+    stop = time()
+    print(f'It took {stop - start:.6f} sec.')
 
-print(f'It took {stop - start:.6f} sec.')
+if __name__ == '__main__':
+    main()
