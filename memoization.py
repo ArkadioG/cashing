@@ -23,6 +23,7 @@ def memoization_search(letter: str, l_count: int):
 
     search_key = f'{letter}{l_count}'
 
+    # check in cache
     if search_key in memo.keys():
         found_words = memo[search_key]
 
@@ -31,17 +32,17 @@ def memoization_search(letter: str, l_count: int):
             if word.count(letter) == l_count:
                 found_words.append(word)
 
-        # memorize data
+        # memorize data into the cache
         memo[search_key] = found_words
 
     # print(f'Found {len(found_words):,d} that contains {l_count} letters {letter}.')
+    return found_words
 
-
-def main():
+def main(search_type=search):
     start = time()
-    search(memoization_search)
+    search_type(memoization_search)
     stop = time()
-    print(f'It took {stop - start:.6f} sec.')
+    print(f'MEMOIZATION - It took {stop - start:.6f} sec.')
 
 
 if __name__ == '__main__':
